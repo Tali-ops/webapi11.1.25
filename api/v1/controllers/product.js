@@ -1,7 +1,11 @@
+const productModel=require('../models/product');
 module.exports={
     Get:(req,res)=>{
         try{
-        return res.status(200).json({Msg:"All Products"});
+            productModel.find().then((products)=>{
+                return res.status(200).json(products);
+            });
+    
         }
         catch
         {
@@ -10,7 +14,10 @@ module.exports={
     },
     GetById:(req,res)=>{
         try{
-        return res.status(200).json({Msg:` Get Product Id ${req.params.id}`});
+            productModel.find({pid:req.params.id}).then((product)=>{
+                return res.status(200).json(product);
+            })
+        
         }
         catch
         {
@@ -19,6 +26,7 @@ module.exports={
     },
     AddNew:(req,res)=>{
         try{
+            productModel
         return res.status(200).json({Msg:" Add New Product",Data:res.body})
         }
         catch
