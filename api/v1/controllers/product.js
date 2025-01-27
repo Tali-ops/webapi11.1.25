@@ -26,8 +26,10 @@ module.exports={
     },
     AddNew:(req,res)=>{
         try{
-            productModel
-        return res.status(200).json({Msg:" Add New Product",Data:res.body})
+            productModel.insertMan([req.body]).then((data)=>{
+                return res.status(200).json(data);
+            });
+        
         }
         catch
         {
